@@ -1,0 +1,16 @@
+total_num = 1024;
+norm_star_point = [0,0];
+norm_end_point = [0.1,0.1];
+norm_contral_point = [0.05,0.001];
+nbr_sh_points = 100;
+[x_curve_sh,y_curve_sh] = simple_bayes_curve(norm_star_point,norm_contral_point,norm_end_point,nbr_points);
+norm_highlight_point = [0.9,0.9];
+norm_highlight_end_point = [1,1];
+norm_highlight_contral_point = [0.95,0.99];
+nbr_hl_points = 100;
+[x_curve_hl,y_curve_hl] = simple_bayes_curve(norm_highlight_point,norm_highlight_contral_point,norm_highlight_end_point,nbr_points);
+linear_num = total_num +2 - nbr_sh_points-nbr_hl_points;
+linear_x = linspace(norm_end_point(1),norm_highlight_point(1),linear_num);
+res_curve_x = [x_curve_sh,linear_x(2:end-1),x_curve_hl] ;
+res_curve_y = [y_curve_sh,linear_x(2:end-1),y_curve_hl] ;
+figure,plot(res_curve_x,res_curve_y);
